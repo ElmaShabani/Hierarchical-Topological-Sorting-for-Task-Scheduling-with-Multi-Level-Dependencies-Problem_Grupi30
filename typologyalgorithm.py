@@ -11,5 +11,9 @@ class HierarchicalTopologicalSort:
         """Shton nje lidhje ne graf (u -> v)"""
         self.adj[u].append(v)
 
+    def topological_sort_util(self, v):
+        """Funksioni ndihmes per te realizuar topological sort (DFS)"""
+        # Marko nyjen si të vizituar
+        self.visited[v] = True
 
         
