@@ -16,4 +16,10 @@ class HierarchicalTopologicalSort:
         # Marko nyjen si të vizituar
         self.visited[v] = True
 
+   #  DFS per nyjet fqinje
+        for neighbor in self.adj[v]:
+            if not self.visited[neighbor]:
+                self.topological_sort_util(neighbor)
+
+        self.stack.append(v)
         
