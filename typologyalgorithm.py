@@ -5,3 +5,11 @@ class HierarchicalTopologicalSort:
         self.adj = [[] for _ in range(num_tasks)]  # Lista e fqinjeve per graf-in
         self.visited = [False] * num_tasks  # Vizituar per ruajtjen e vizitave te nyjeve
         self.stack = []  # Staku per ruajtjen e renditjes topologjike
+
+
+    def add_edge(self, u, v):
+        """Shton nje lidhje ne graf (u -> v)"""
+        self.adj[u].append(v)
+
+
+        
