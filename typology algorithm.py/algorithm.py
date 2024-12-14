@@ -54,3 +54,26 @@ def read_edges():
         print("Opsion i pavlefshëm.")
 
     return num_tasks, edges
+
+# Funksioni kryesor për ekzekutimin e programit
+if __name__ == "__main__":
+    num_tasks, edges = read_edges()
+
+    if num_tasks > 0 and edges:
+        print("\nDetyrat dhe varësitë e lexuara:")
+        print(f"Numri i detyrave: {num_tasks}")
+        print(f"Varësitë: {edges}")
+
+        # Krijoni graf-in dhe shtoni varësitë
+        hts = HierarchicalTopologicalSort(num_tasks)
+        for u, v in edges:
+            hts.add_edge(u, v)
+
+        # Kryeni renditjen topologjike
+        try:
+            result = hts.topological_sort()
+            print("\nRenditja e vlefshme e detyrave:", result)
+        except Exception as e:
+            print("\nGabim:", e)
+    else:
+        print("Të dhënat e futura ishin të pavlefshme.")
