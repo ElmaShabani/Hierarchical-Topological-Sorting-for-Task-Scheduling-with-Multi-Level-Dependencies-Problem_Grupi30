@@ -38,4 +38,3 @@ def read_edges():
         except ValueError:
             print("Input i pavlefshëm! Ju lutem shkruani numra të vlefshëm.")
 
-   
