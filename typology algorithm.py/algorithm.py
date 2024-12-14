@@ -38,3 +38,19 @@ def read_edges():
         except ValueError:
             print("Input i pavlefshëm! Ju lutem shkruani numra të vlefshëm.")
 
+    elif mode == "2":
+        filename = input("Shkruani emrin e file-it: ").strip()
+        try:
+            with open(filename, 'r') as file:
+                num_tasks = int(file.readline().strip())
+                num_edges = int(file.readline().strip())
+                for _ in range(num_edges):
+                    u, v = map(int, file.readline().strip().split())
+                    edges.append((u, v))
+        except (ValueError, FileNotFoundError, IndexError) as e:
+            print(f"Gabim gjatë leximit të file-it: {e}")
+
+    else:
+        print("Opsion i pavlefshëm.")
+
+    return num_tasks, edges
