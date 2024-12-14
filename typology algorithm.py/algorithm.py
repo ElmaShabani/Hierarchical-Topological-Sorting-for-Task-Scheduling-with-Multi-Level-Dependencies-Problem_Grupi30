@@ -21,3 +21,21 @@ class HierarchicalTopologicalSort:
                 self.topological_sort_util(neighbor)
 
         self.stack.append(v)
+def read_edges():
+    """Funksioni per te lexuar detyrat dhe varesite nga tastiera ose nga file"""
+    mode = input("Zgjidhni menyren e leximit (1 per tastiere, 2 per file): ").strip()
+    edges = []
+    num_tasks = 0
+
+    if mode == "1":
+        try:
+            num_tasks = int(input("Numri i detyrave: "))
+            num_edges = int(input("Numri i varesive: "))
+            print("Shkruani varesite në formatin 'detyre1 detyre2', ku detyre1 varet nga detyre2:")
+            for _ in range(num_edges):
+                u, v = map(int, input("Varesia: ").split())
+                edges.append((u, v))
+        except ValueError:
+            print("Input i pavlefshëm! Ju lutem shkruani numra të vlefshëm.")
+
+   
