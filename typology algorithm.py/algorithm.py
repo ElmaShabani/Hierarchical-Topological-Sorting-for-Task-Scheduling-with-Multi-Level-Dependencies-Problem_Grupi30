@@ -29,4 +29,8 @@ class HierarchicalTopologicalSort:
             if not self.visited[i]:
                 self.topological_sort_util(i)
 
-      
+        # renditja topologjike
+        result = []
+        while self.stack:
+            result.append(self.stack.pop())
+        return result
