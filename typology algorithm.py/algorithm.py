@@ -21,3 +21,12 @@ class HierarchicalTopologicalSort:
                 self.topological_sort_util(neighbor)
 
         self.stack.append(v)
+
+        def topological_sort(self):
+        """Funksioni kryesor per te kryer topological sort dhe detektimin e cikleve"""
+        #  DFS per nyje te pa vizituar ende
+        for i in range(self.num_tasks):
+            if not self.visited[i]:
+                self.topological_sort_util(i)
+
+      
