@@ -28,6 +28,13 @@ class Graph:
         
         # Vizualizimi
         pos = nx.spring_layout(G)  # Layout i nyjeve
+        labels = nx.get_edge_attributes(G, 'weight')  # Etiketat e peshës
+        
+        nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, font_size=10, font_weight='bold')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)  # Vendos peshat e lidhjeve
+        
+        plt.title("Vizualizimi i Grafit")
+        plt.show()
 
 class DirectedAcyclicGraph(Graph):
     def __init__(self, num_nodes):
