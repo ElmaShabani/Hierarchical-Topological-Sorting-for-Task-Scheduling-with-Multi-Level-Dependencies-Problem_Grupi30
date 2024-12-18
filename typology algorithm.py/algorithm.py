@@ -1,3 +1,6 @@
+import networkx as nx
+import matplotlib.pyplot as plt 
+
 class Graph:
     def __init__(self, num_nodes):
         """Inicializon një graf me numrin e nyjeve."""
@@ -82,20 +85,20 @@ def read_data():
     dependencies = []
     num_tasks = 0
 
-     if mode == "1":
+    if mode == "1":
         try:
             num_tasks = int(input("Numri i detyrave: "))
             num_dependencies = int(input("Numri i varësive: "))
             print("Shkruani varësitë në formatin 'detyre1 detyre2 peshë' (peshë është opsionale):")
 
-             for _ in range(num_dependencies):
+            for _ in range(num_dependencies):
                 inputs = input("Varësia: ").split()
                 u, v = int(inputs[0]), int(inputs[1])
                 weight = int(inputs[2]) if len(inputs) > 2 else 1
                 dependencies.append((u, v, weight))
         except ValueError:
             print("Input i pavlefshëm!")
- elif mode == "2":
+    elif mode == "2":
         filename = input("Shkruani emrin e file-it: ").strip()
         try:
             with open(filename, 'r') as file:
@@ -103,12 +106,35 @@ def read_data():
                 num_dependencies = int(file.readline().strip())
                 for _ in range(num_dependencies):
                     inputs = file.readline().strip().split()
-                     u, v = int(inputs[0]), int(inputs[1])
+                    u, v = int(inputs[0]), int(inputs[1])
                     weight = int(inputs[2]) if len(inputs) > 2 else 1
                     dependencies.append((u, v, weight))
         except (ValueError, FileNotFoundError, IndexError) as e:
             print(f"Gabim gjatë leximit të file-it: {e}")
-             else:
-        print("Opsion i pavlefshëm. Ju lutem zgjidhni 1 ose 2.")
+        else:
+            print("Opsion i pavlefshëm. Ju lutem zgjidhni 1 ose 2.")
 
     return num_tasks, dependencies
+
+if __name__ == "__main__":
+    num_tasks, dependencies = read_data()
+
+    dag = DirectedAcyclicGraph(num_tasks)
+    for u, v, weight in dependencies:
+        dag.add_edge(u, v, weight)
+
+    dag.display_graph()
+
+    print("\nVizualizimi i grafit:")
+    dag.visualize_graph()  # Vizualizo graf-in
+
+    try:
+        print("\nRenditja topologjike me prioritet të ulët (low):")
+        result_low = dag.topological_sort(priority="low")
+        print(result_low)
+
+        print("\nRenditja topologjike me prioritet të lartë (high):")
+        result_high = dag.topological_sort(priority="high")
+        print(result_high)
+    except ValueError as e:
+        print("Gabim:", e)
