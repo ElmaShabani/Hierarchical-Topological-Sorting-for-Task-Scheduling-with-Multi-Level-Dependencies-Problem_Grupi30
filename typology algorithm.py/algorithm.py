@@ -1,26 +1,19 @@
-class HierarchicalTopologicalSort:
-    def __init__(self, num_tasks):
-        """Inicializon graf-in me numrin e nyjeve (detyrave)"""
-        self.num_tasks = num_tasks
-        self.adj = [[] for _ in range(num_tasks)]  # Lista e fqinjeve per graf-in
-        self.visited = [False] * num_tasks  # Vizituar per ruajtjen e vizitave te nyjeve
-        self.stack = []  # Staku per ruajtjen e renditjes topologjike
+class Graph:
+    def __init__(self, num_nodes):
+        """Inicializon një graf me numrin e nyjeve."""
+        self.num_nodes = num_nodes
+        self.adj_list = {i: [] for i in range(num_nodes)}
 
-    def add_edge(self, u, v):
-        """Shton nje lidhje ne graf (u -> v)"""
-        self.adj[u].append(v)
+    def add_edge(self, u, v, weight=1):
+        """Shton një lidhje me peshë në graf (u -> v)."""
+        self.adj_list[u].append((v, weight))
 
-    def topological_sort_util(self, v):
-        """Funksioni ndihmes per te realizuar topological sort (DFS)"""
-        # Marko nyjen si të vizituar
-        self.visited[v] = True
-
-        #  DFS per nyjet fqinje
-        for neighbor in self.adj[v]:
-            if not self.visited[neighbor]:
-                self.topological_sort_util(neighbor)
-
-        self.stack.append(v)
+    def display_graph(self):
+        """Shfaq graf-in në formë tekstuale."""
+        print("Grafi:")
+        for node, neighbors in self.adj_list.items():
+            print(f"{node} -> {[(n, w) for n, w in neighbors]}")
+            
 def read_edges():
     """Funksioni per te lexuar detyrat dhe varesite nga tastiera ose nga file"""
     mode = input("Zgjidhni menyren e leximit (1 per tastiere, 2 per file): ").strip()
