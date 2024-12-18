@@ -17,6 +17,18 @@ class Graph:
         for node, neighbors in self.adj_list.items():
             print(f"{node} -> {[(n, w) for n, w in neighbors]}")
 
+    def visualize_graph(self):
+        """Vizualizon graf-in duke përdorur NetworkX dhe Matplotlib."""
+        G = nx.DiGraph()  # Graf i orientuar (Directed Graph)
+        
+        # Shto nyjet dhe lidhjet
+        for node, neighbors in self.adj_list.items():
+            for neighbor, weight in neighbors:
+                G.add_edge(node, neighbor, weight=weight)
+        
+        # Vizualizimi
+        pos = nx.spring_layout(G)  # Layout i nyjeve
+
 class DirectedAcyclicGraph(Graph):
     def __init__(self, num_nodes):
         """Inicializon një graf aciklik të drejtuar (DAG)."""
