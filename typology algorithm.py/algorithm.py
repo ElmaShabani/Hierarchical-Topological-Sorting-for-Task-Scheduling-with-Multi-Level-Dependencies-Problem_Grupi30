@@ -103,3 +103,8 @@ def read_data():
                 num_dependencies = int(file.readline().strip())
                 for _ in range(num_dependencies):
                     inputs = file.readline().strip().split()
+                     u, v = int(inputs[0]), int(inputs[1])
+                    weight = int(inputs[2]) if len(inputs) > 2 else 1
+                    dependencies.append((u, v, weight))
+        except (ValueError, FileNotFoundError, IndexError) as e:
+            print(f"Gabim gjatë leximit të file-it: {e}")
