@@ -108,3 +108,7 @@ def read_data():
                     dependencies.append((u, v, weight))
         except (ValueError, FileNotFoundError, IndexError) as e:
             print(f"Gabim gjatë leximit të file-it: {e}")
+             else:
+        print("Opsion i pavlefshëm. Ju lutem zgjidhni 1 ose 2.")
+
+    return num_tasks, dependencies
