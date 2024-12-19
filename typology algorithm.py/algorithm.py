@@ -95,3 +95,11 @@ def read_data():
                 dependencies.append((u, v, weight))
         except ValueError:
             print("Input i pavlefshëm!")
+ elif mode == "2":
+        filename = input("Shkruani emrin e file-it: ").strip()
+        try:
+            with open(filename, 'r') as file:
+                num_tasks = int(file.readline().strip())
+                num_dependencies = int(file.readline().strip())
+                for _ in range(num_dependencies):
+                    inputs = file.readline().strip().split()
