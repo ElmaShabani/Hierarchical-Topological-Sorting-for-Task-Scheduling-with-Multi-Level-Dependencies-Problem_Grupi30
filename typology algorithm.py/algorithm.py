@@ -81,3 +81,9 @@ def read_data():
     mode = input("Zgjidhni mënyrën e leximit (1 për tastierë, 2 për file): ").strip()
     dependencies = []
     num_tasks = 0
+    
+     if mode == "1":
+        try:
+            num_tasks = int(input("Numri i detyrave: "))
+            num_dependencies = int(input("Numri i varësive: "))
+            print("Shkruani varësitë në formatin 'detyre1 detyre2 peshë' (peshë është opsionale):")
